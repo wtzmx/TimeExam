@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>考试提醒助手控制面板</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- 侧边栏 -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="images/icon48.png" alt="Logo" class="logo">
+        <h1>考试提醒助手</h1>
+      </div>
+      <nav class="sidebar-nav">
+        <ul>
+          <li class="active">
+            <a href="#search">
+              <span class="material-icons">search</span>
+              仪表盘
+            </a>
+          </li>
+          <li>
+            <a href="#favorites">
+              <span class="material-icons">bookmark</span>
+              考试管理
+            </a>
+          </li>
+          <li>
+            <a href="#history">
+              <span class="material-icons">history</span>
+              日程表
+            </a>
+          </li>
+          <li>
+            <a href="#settings">
+              <span class="material-icons">settings</span>
+              设置
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- 主要内容区 -->
+    <main class="main-content">
+      <!-- 顶部栏 -->
+      <header class="top-bar">
+        <div class="user-actions">
+          <button class="icon-button">
+            <span class="material-icons">notifications</span>
+          </button>
+          <button class="icon-button">
+            <span class="material-icons">help_outline</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- 内容区域 -->
+      <div class="content-area">
+        <!-- 考试管理部分 -->
+        <section id="exam-management" class="section">
+          <div class="section-header">
+            <div class="header-content">
+              <div class="action-buttons">
+                <button class="action-button primary" id="addExamBtn">
+                  <span class="material-icons">add</span>
+                  新增考试
+                </button>
+                <button class="action-button" id="exportBtn">
+                  <span class="material-icons">file_download</span>
+                  导出备份
+                </button>
+                <button class="action-button" id="importBtn">
+                  <span class="material-icons">file_upload</span>
+                  导入备份
+                </button>
+              </div>
+              <div class="exam-search">
+                <div class="search-wrapper">
+                  <span class="material-icons">search</span>
+                  <input type="text" id="examSearch" placeholder="搜索考试名称...">
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 考试列表 -->
+          <div class="exam-list">
+            <table id="examTable">
+              <thead>
+                <tr>
+                  <th>考试名称</th>
+                  <th>状态</th>
+                  <th>公告发布</th>
+                  <th>网上报名</th>
+                  <th>网上缴费</th>
+                  <th>准考证打印</th>
+                  <th>笔试时间</th>
+                  <th>面试时间</th>
+                  <th>链接</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody id="examTableBody">
+                <!-- 考试数据将通过 JavaScript 动态添加 -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 仪表盘部分 -->
+        <section id="search-results" class="active-section">
+          <!-- 这里是空的仪表盘区域 -->
+        </section>
+      </div>
+    </main>
+  </div>
+  <div id="addExamModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>新增考试</h2>
+        <div class="modal-actions">
+          <button type="button" class="modal-action-button secondary" id="cancelExam">
+            <span class="material-icons">close</span>
+            取消
+          </button>
+          <button type="submit" class="modal-action-button primary" id="saveExam">
+            <span class="material-icons">save</span>
+            保存
+          </button>
+          <button class="modal-action-button" id="expandModal" title="放大">
+            <span class="material-icons">open_in_full</span>
+          </button>
+          <button class="modal-action-button" id="closeModal" title="关闭">
+            <span class="material-icons">close</span>
+          </button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <form id="examForm" class="exam-form">
+          <div class="form-layout">
+            <!-- 左侧内容 -->
+            <div class="form-left">
+              <div class="form-group">
+                <label for="examName">考试名称 <span class="required">*</span></label>
+                <input type="text" id="examName" name="examName" required>
+              </div>
+
+              <div class="form-group">
+                <label for="examUrl">公告链接 <span class="required">*</span></label>
+                <input type="url" id="examUrl" name="examUrl" required>
+              </div>
+
+              <div class="form-group">
+                <label for="registerUrl">报名地址</label>
+                <input type="url" id="registerUrl" name="registerUrl">
+              </div>
+
+              <div class="form-group">
+                <label for="position">报名岗位</label>
+                <input type="text" id="position" name="position">
+              </div>
+
+              <div class="form-group">
+                <label for="notes">备注信息</label>
+                <textarea id="notes" name="notes" rows="4"></textarea>
+              </div>
+            </div>
+
+            <!-- 右侧内容 -->
+            <div class="form-right">
+              <div class="time-points-header">
+                <h3>时间节点</h3>
+              </div>
+
+              <div class="time-points-container" id="timePointsContainer">
+                <!-- 默认时间节点 -->
+                <div class="time-point-item" data-id="announce">
+                  <div class="time-point-header">
+                    <label>公告发布 <span class="required">*</span></label>
+                    <div class="toggle-switch">
+                      <input type="checkbox" id="announce_toggle" class="toggle-input">
+                      <label for="announce_toggle" class="toggle-label">
+                        <span class="toggle-text">时间点</span>
+                        <span class="toggle-text">时间段</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="time-point-inputs">
+                    <input type="datetime-local" name="announceDate" required>
+                  </div>
+                </div>
+
+                <div class="time-point-item" data-id="register">
+                  <div class="time-point-header">
+                    <label>网上报名 <span class="required">*</span></label>
+                    <div class="toggle-switch">
+                      <input type="checkbox" id="register_toggle" class="toggle-input">
+                      <label for="register_toggle" class="toggle-label">
+                        <span class="toggle-text">时间点</span>
+                        <span class="toggle-text">时间段</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="time-point-inputs range">
+                    <input type="datetime-local" name="registerStartDate" required>
+                    <span class="date-separator">至</span>
+                    <input type="datetime-local" name="registerEndDate" required>
+                  </div>
+                </div>
+
+                <div class="time-point-item" data-id="payment">
+                  <div class="time-point-header">
+                    <label>网上缴费</label>
+                    <div class="toggle-switch">
+                      <input type="checkbox" id="payment_toggle" class="toggle-input">
+                      <label for="payment_toggle" class="toggle-label">
+                        <span class="toggle-text">时间点</span>
+                        <span class="toggle-text">时间段</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="time-point-inputs range">
+                    <input type="datetime-local" name="paymentStartDate">
+                    <span class="date-separator">至</span>
+                    <input type="datetime-local" name="paymentEndDate">
+                  </div>
+                </div>
+
+                <div class="time-point-item" data-id="admission">
+                  <div class="time-point-header">
+                    <label>准考证打印</label>
+                    <div class="toggle-switch">
+                      <input type="checkbox" id="admission_toggle" class="toggle-input">
+                      <label for="admission_toggle" class="toggle-label">
+                        <span class="toggle-text">时间点</span>
+                        <span class="toggle-text">时间段</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="time-point-inputs range">
+                    <input type="datetime-local" name="admissionStartDate">
+                    <span class="date-separator">至</span>
+                    <input type="datetime-local" name="admissionEndDate">
+                  </div>
+                </div>
+
+                <div class="time-point-item" data-id="written">
+                  <div class="time-point-header">
+                    <label>笔试时间 <span class="required">*</span></label>
+                    <div class="toggle-switch">
+                      <input type="checkbox" id="written_toggle" class="toggle-input">
+                      <label for="written_toggle" class="toggle-label">
+                        <span class="toggle-text">时间点</span>
+                        <span class="toggle-text">时间段</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="time-point-inputs">
+                    <input type="datetime-local" name="writtenDate" required>
+                  </div>
+                </div>
+
+                <div class="time-point-item" data-id="interview">
+                  <div class="time-point-header">
+                    <label>面试时间</label>
+                    <div class="toggle-switch">
+                      <input type="checkbox" id="interview_toggle" class="toggle-input">
+                      <label for="interview_toggle" class="toggle-label">
+                        <span class="toggle-text">时间点</span>
+                        <span class="toggle-text">时间段</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="time-point-inputs">
+                    <input type="datetime-local" name="interviewDate">
+                  </div>
+                </div>
+
+                <button type="button" class="add-time-point-btn" id="addTimePoint">
+                  <span class="material-icons">add_circle_outline</span>
+                  <span>添加自定义时间节点</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="js/dashboard.js"></script>
+</body>
+</html> 

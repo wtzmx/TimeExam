@@ -1,0 +1,1084 @@
+/* 基础样式重置 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  background-color: #f5f6fa;
+  color: #2d3436;
+}
+
+/* 主容器 */
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* 侧边栏样式 */
+.sidebar {
+  width: 260px;
+  background-color: #fff;
+  border-right: 1px solid #e1e4e8;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  padding: 0 20px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid #e1e4e8;
+}
+
+.sidebar-header h1 {
+  font-size: 1.2rem;
+  color: #2d3436;
+}
+
+.logo {
+  width: 32px;
+  height: 32px;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding: 20px 0;
+}
+
+.sidebar-nav li a {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  color: #2d3436;
+  text-decoration: none;
+  gap: 12px;
+  transition: all 0.3s ease;
+}
+
+.sidebar-nav li.active a {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+.sidebar-nav li:hover a {
+  background-color: #f5f6fa;
+}
+
+/* 主内容区域 */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 顶部栏 */
+.top-bar {
+  background-color: #fff;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-bottom: 1px solid #e1e4e8;
+}
+
+.user-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #616161;
+  transition: background-color 0.3s ease;
+}
+
+.icon-button:hover {
+  background-color: #f5f6fa;
+}
+
+/* 内容区域 */
+.content-area {
+  padding: 30px;
+  flex: 1;
+}
+
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.filter-options select {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 1px solid #e1e4e8;
+  background-color: white;
+  cursor: pointer;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 80px;
+  }
+  
+  .sidebar-header h1 {
+    display: none;
+  }
+  
+  .sidebar-nav li a span:not(.material-icons) {
+    display: none;
+  }
+}
+
+/* 考试管理页面样式优化 */
+.section {
+  display: none;
+  padding: 20px;
+}
+
+.section.active {
+  display: block;
+}
+
+.section-header {
+  background: #fff;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  margin-bottom: 24px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.exam-search {
+  min-width: 300px;
+}
+
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 8px 16px;
+  gap: 12px;
+  transition: all 0.2s ease;
+}
+
+.search-wrapper:focus-within {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.search-wrapper input {
+  flex: 1;
+  border: none;
+  background: none;
+  outline: none;
+  font-size: 14px;
+  color: #1f2937;
+  min-width: 240px;
+}
+
+.search-wrapper .material-icons {
+  color: #9ca3af;
+}
+
+.exam-list {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 1200px;
+}
+
+/* 表头样式 */
+th {
+  background: #f8fafc;
+  padding: 12px 16px;
+  font-weight: 500;
+  color: #64748b;
+  font-size: 13px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* 单元格基础样式 */
+td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+}
+
+/* 考试名称列样式 */
+td:first-child {
+  font-weight: 500;
+  color: #1f2937;
+  font-size: 14px;
+}
+
+/* 状态列样式 */
+.exam-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* 时间节点单元格样式 */
+.time-node-display {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.date-range-display {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.date-range-display div {
+  font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 13px;
+  color: #374151;
+  white-space: nowrap;
+}
+
+/* 时间状态标签样式 */
+.time-status {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1;
+}
+
+.time-status-ended {
+  background-color: #fef2f2;
+  color: #ef4444;
+}
+
+.time-status-ongoing {
+  background-color: #fff7ed;
+  color: #f59e0b;
+}
+
+.time-status-upcoming {
+  background-color: #f0fdf4;
+  color: #10b981;
+}
+
+/* 链接列样式 */
+td:nth-child(9) {
+  text-align: center;
+}
+
+.exam-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  color: #64748b;
+  transition: all 0.2s ease;
+}
+
+.exam-link:hover {
+  background-color: #f1f5f9;
+  color: #3b82f6;
+}
+
+/* 操作列样式 */
+td:last-child {
+  text-align: center;
+}
+
+.exam-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.exam-action-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.exam-action-button:hover {
+  background-color: #f1f5f9;
+  color: #3b82f6;
+}
+
+/* 时间列背景色 */
+td:nth-child(3) { background: #fffbeb; } /* 公告发布 */
+td:nth-child(4) { background: #f0fdf4; } /* 网上报名 */
+td:nth-child(5) { background: #fff1f2; } /* 网上缴费 */
+td:nth-child(6) { background: #f0f9ff; } /* 准考证打印 */
+td:nth-child(7) { background: #faf5ff; } /* 笔试时间 */
+td:nth-child(8) { background: #f8fafc; } /* 面试时间 */
+
+/* 考试状态样式 */
+.status-upcoming {
+  background-color: #f0fdf4;
+  color: #10b981;
+}
+
+.status-ongoing {
+  background-color: #fff7ed;
+  color: #f59e0b;
+}
+
+.status-ended {
+  background-color: #fef2f2;
+  color: #ef4444;
+}
+
+/* 行悬停效果 */
+tr:hover td {
+  background-opacity: 0.8;
+}
+
+/* 状态标签样式 */
+td:nth-child(2) {
+  font-weight: 500;
+}
+
+.status-ended { color: #ef4444; }
+.status-registering { 
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+  padding: 6px 12px;
+  border-radius: 20px;
+  display: inline-block;
+}
+.status-pending { color: #6b7280; }
+.status-admission { 
+  color: #3b82f6;
+  background: rgba(59, 130, 246, 0.1);
+  padding: 6px 12px;
+  border-radius: 20px;
+  display: inline-block;
+}
+.status-payment { 
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.1);
+  padding: 6px 12px;
+  border-radius: 20px;
+  display: inline-block;
+}
+.status-upcoming { 
+  color: #8b5cf6;
+  background: rgba(139, 92, 246, 0.1);
+  padding: 6px 12px;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+/* 操作按钮样式 */
+.exam-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.exam-action-button {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: white;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.exam-action-button:hover {
+  background: #f9fafb;
+  color: #3b82f6;
+  border-color: #3b82f6;
+  transform: translateY(-1px);
+}
+
+/* 链接样式优化 */
+.exam-link {
+  color: #3b82f6;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  padding: 6px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.exam-link:hover {
+  background: rgba(59, 130, 246, 0.1);
+  color: #2563eb;
+}
+
+.exam-link + .exam-link {
+  margin-left: 8px;
+}
+
+/* 时间列样式 */
+td:nth-child(3),
+td:nth-child(4),
+td:nth-child(5),
+td:nth-child(6),
+td:nth-child(7),
+td:nth-child(8) {
+  font-size: 13px;
+  color: #64748b;
+}
+
+/* 考试名称列样式 */
+td:first-child {
+  font-weight: 500;
+  color: #1f2937;
+}
+
+/* 修改和添加按钮相关的样式 */
+.action-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.action-button.primary {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+}
+
+.action-button.primary:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(59, 130, 246, 0.25);
+}
+
+.action-button:not(.primary) {
+  background: white;
+  color: #4b5563;
+  border: 1px solid #e5e7eb;
+}
+
+.action-button:not(.primary):hover {
+  background: #f9fafb;
+  border-color: #d1d5db;
+  color: #374151;
+}
+
+/* 按钮组样式优化 */
+.action-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+/* 状态样式 */
+.status-ended { color: #dc3545; }
+.status-registering { color: #28a745; }
+.status-pending { color: #6c757d; }
+.status-admission { color: #007bff; }
+.status-payment { color: #ffc107; }
+.status-upcoming { color: #17a2b8; }
+.status-unset { color: #6c757d; }
+
+/* 链接样式 */
+.exam-link {
+  color: #1976d2;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.exam-link:hover {
+  color: #1565c0;
+}
+
+/* 模态框样式 */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  position: relative;
+  background-color: #fff;
+  margin: 40px auto;
+  width: 80%;
+  max-width: 800px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.3s ease;
+}
+
+.modal-content.expanded {
+  width: 95%;
+  max-width: none;
+  height: 95vh;
+  margin: 20px auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  border-bottom: 1px solid #e1e4e8;
+  background: #f8fafc;
+  border-radius: 8px 8px 0 0;
+}
+
+.modal-header h2 {
+  font-size: 18px;
+  color: #24292e;
+  margin: 0;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.modal-action-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+  background: white;
+  color: #64748b;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modal-action-button:hover {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+.modal-action-button.primary {
+  background: #3b82f6;
+  color: white;
+  border: none;
+}
+
+.modal-action-button.primary:hover {
+  background: #2563eb;
+}
+
+.modal-action-button.secondary {
+  background: white;
+  color: #64748b;
+  border: 1px solid #e5e7eb;
+}
+
+.modal-action-button.secondary:hover {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+.modal-body {
+  padding: 24px;
+  max-height: calc(90vh - 70px);
+  overflow-y: auto;
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* 表单样式优化 */
+.exam-form {
+  width: 100%;
+  background: #fff;
+  border-radius: 12px;
+}
+
+.form-layout {
+  display: flex;
+  gap: 48px;
+}
+
+.form-left, .form-right {
+  flex: 1;
+  padding: 24px;
+}
+
+.form-left {
+  border-right: 1px solid #f0f0f0;
+}
+
+.form-group {
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.form-group label {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #1f2937;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.required {
+  color: #ef4444;
+  margin-left: 4px;
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  background-color: #f9fafb;
+}
+
+.form-group input:hover,
+.form-group textarea:hover {
+  border-color: #d1d5db;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #3b82f6;
+  outline: none;
+  background-color: #fff;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+/* 时间节点样式优化 */
+.time-points-header {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.time-points-header h3 {
+  font-size: 1.1rem;
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.add-time-point-btn {
+  padding: 8px 16px;
+  border: 2px dashed #3b82f6;
+  border-radius: 8px;
+  background: rgba(59, 130, 246, 0.05);
+  color: #3b82f6;
+  font-weight: 500;
+}
+
+.add-time-point-btn:hover {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+.time-points-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 4px;
+}
+
+.time-point-item {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.time-point-item:hover {
+  border-color: #3b82f6;
+  box-shadow: 0 2px 6px rgba(59, 130, 246, 0.1);
+}
+
+.time-point-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.time-type-select {
+  padding: 6px 12px;
+  border: 2px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.time-type-select:hover {
+  border-color: #d1d5db;
+}
+
+.time-type-select:focus {
+  border-color: #3b82f6;
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.time-point-inputs {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.time-point-inputs input[type="datetime-local"] {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #1f2937;
+  background: #f9fafb;
+  transition: all 0.2s ease;
+}
+
+.time-point-inputs input[type="datetime-local"]:hover {
+  border-color: #d1d5db;
+  background: white;
+}
+
+.time-point-inputs input[type="datetime-local"]:focus {
+  border-color: #3b82f6;
+  background: white;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.date-separator {
+  color: #6b7280;
+  font-weight: 500;
+}
+
+/* 表单底部按钮样式优化 */
+.form-actions {
+  display: none;
+}
+
+/* 自定义时间节点输入框样式 */
+.time-point-name {
+  padding: 6px 12px;
+  border: 2px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+  transition: all 0.2s ease;
+}
+
+.time-point-name:hover {
+  border-color: #d1d5db;
+}
+
+.time-point-name:focus {
+  border-color: #3b82f6;
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+/* iOS风格的开关按钮 */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+}
+
+.toggle-input {
+  display: none;
+}
+
+.toggle-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 120px;
+  height: 32px;
+  background: #e5e7eb;
+  border-radius: 16px;
+  padding: 2px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.toggle-label::after {
+  content: '';
+  position: absolute;
+  left: 2px;
+  width: 58px;
+  height: 28px;
+  border-radius: 14px;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.toggle-input:checked + .toggle-label {
+  background: #3b82f6;
+}
+
+.toggle-input:checked + .toggle-label::after {
+  left: calc(100% - 60px);
+}
+
+.toggle-text {
+  color: #4b5563;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 0 8px;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+
+.toggle-input:checked + .toggle-label .toggle-text:first-child {
+  color: #9ca3af;
+}
+
+.toggle-input:not(:checked) + .toggle-label .toggle-text:last-child {
+  color: #9ca3af;
+}
+
+/* 添加时间节点按钮样式优化 */
+.add-time-point-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 16px;
+  margin-top: 8px;
+  border: 2px dashed #d1d5db;
+  border-radius: 12px;
+  background: white;
+  color: #6b7280;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.add-time-point-btn:hover {
+  border-color: #3b82f6;
+  color: #3b82f6;
+  background: rgba(59, 130, 246, 0.05);
+}
+
+.add-time-point-btn .material-icons {
+  font-size: 20px;
+}
+
+/* 时间节点背景色 */
+td:nth-child(3) { background: rgba(254, 243, 199, 0.3); } /* 公告发布 */
+td:nth-child(4) { background: rgba(209, 250, 229, 0.3); } /* 网上报名 */
+td:nth-child(5) { background: rgba(254, 226, 226, 0.3); } /* 网上缴费 */
+td:nth-child(6) { background: rgba(219, 234, 254, 0.3); } /* 准考证打印 */
+td:nth-child(7) { background: rgba(237, 233, 254, 0.3); } /* 笔试时间 */
+td:nth-child(8) { background: rgba(249, 250, 251, 0.3); } /* 面试时间 */
+
+/* 时间显示样式 */
+.date-range-display {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px 0;
+}
+
+.date-range-display div {
+  font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 13px;
+  color: #374151;
+  white-space: nowrap;
+}
+
+/* 单个时间节点的样式 */
+td:nth-child(3),
+td:nth-child(4),
+td:nth-child(5),
+td:nth-child(6),
+td:nth-child(7),
+td:nth-child(8) {
+  padding: 12px 16px;
+  font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 13px;
+  color: #374151;
+  transition: all 0.2s ease;
+}
+
+/* 悬停效果 */
+tr:hover td:nth-child(3),
+tr:hover td:nth-child(4),
+tr:hover td:nth-child(5),
+tr:hover td:nth-child(6),
+tr:hover td:nth-child(7),
+tr:hover td:nth-child(8) {
+  background-opacity: 0.5;
+}
+
+/* 时间节点显示样式 */
+.time-node-display {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.time-status {
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  font-weight: 500;
+  text-align: center;
+}
+
+.time-status-ended {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.time-status-ongoing {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+}
+
+.time-status-upcoming {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+}
+
+/* 调整时间显示容器的内边距 */
+td:nth-child(3),
+td:nth-child(4),
+td:nth-child(5),
+td:nth-child(6),
+td:nth-child(7),
+td:nth-child(8) {
+  padding: 8px 16px;
+}
+
+/* 优化日期显示 */
+.date-range-display {
+  margin-bottom: 2px;
+}
+
+/* 状态显示样式 */
+.exam-status {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.status-text {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.status-detail {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+/* 未开始状态 */
+.status-upcoming {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+}
+
+/* 进行中状态 */
+.status-ongoing {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+}
+
+/* 已结束状态 */
+.status-ended {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+  
